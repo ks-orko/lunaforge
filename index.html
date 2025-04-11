@@ -225,7 +225,7 @@ let mouseX = window.innerWidth / 2; // Coordenada X inicial (centro de pantalla)
 let mouseY = window.innerHeight / 2; // Coordenada Y inicial (centro de pantalla)
 let pulse = 0;
 let growing = true;
-let maxPulse = 300;
+let maxPulse = 400;
 let colorShift = 0;
 
 // Guardar la posición del mouse cuando se mueve
@@ -236,7 +236,7 @@ document.addEventListener('mousemove', function(e) {
 
 // Función que actualiza la luz todo el tiempo (color + pulso)
 setInterval(function() {
-    const baseSize = 500;
+    const baseSize = 400;
     const pulseSize = baseSize + pulse;
 
     // Cambiar dinámicamente el color
@@ -245,7 +245,7 @@ setInterval(function() {
     const blue = 50 + Math.floor(Math.cos(colorShift) * 30);    // Oscilación azul
 
     // Aplicar el nuevo fondo
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.1) 0%, rgba(0,0,0,0.95) 70%)`;
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
     // Pulso de la luz
     if (growing) {
@@ -263,7 +263,7 @@ setInterval(function() {
 
     // Cambio continuo de color
     colorShift += 0.1;
-}, 50); // Actualiza cada 50 milisegundos
+}, 100); // Actualiza cada 50 milisegundos
 
 </script>
 </body>
