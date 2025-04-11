@@ -216,11 +216,36 @@
     }
   }
 
-  // Script de la antorcha
-  const spotlight = document.getElementById('spotlight');
-  document.addEventListener('mousemove', function(e) {
-    spotlight.style.background = `radial-gradient(circle 700px at ${e.clientX}px ${e.clientY}px, rgba(200, 140, 80, 0.15) 0%, rgba(0, 0, 0, 0.95) 70%)`;
+  // Script de la antorcha que respira de forma natural
+const spotlight = document.getElementById('spotlight');
+
+let pulse = 0;           // Tamaño adicional dinámico
+let growing = true;      // Saber si estamos expandiendo o contrayendo
+let maxPulse = 20;       // Hasta cuánto se expande en este ciclo
+
+document.addEventListener('mousemove', function(e) {
+    const baseSize = 700;            // Tamaño base
+    const pulseSize = baseSize + pulse;  // Tamaño pulsando
+
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${e.clientX}px ${e.clientY}px, rgba(200, 140, 80, 0.15) 0%, rgba(0, 0, 0, 0.95) 70%)`;
 });
+
+// Ahora hacemos que la luz no solo pulse, sino que cambie aleatoriamente
+setInterval(function() {
+    if (growing) {
+        pulse += 1;
+        if (pulse > maxPulse) {
+            growing = false;
+            // Cambiamos aleatoriamente el siguiente "máximo"
+            maxPulse = Math.floor(Math.random() * 15) + 10; // nuevo máximo entre 10 y 25
+        }
+    } else {
+        pulse -= 1;
+        if (pulse < 0) {
+            growing = true;
+        }
+    }
+}, 50); // La velocidad del latido (puedes ajustar)
 </script>
 
 </body>
