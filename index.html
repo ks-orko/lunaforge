@@ -109,8 +109,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw; /* Viewport Width */
+            height: 100vh; /* Viewport Height */
             pointer-events: none;
             z-index: 9999;
             background: radial-gradient(circle 150px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.95) 50%);
@@ -245,7 +245,7 @@ setInterval(function() {
     const blue = 50 + Math.floor(Math.cos(colorShift) * 30);    // Oscilación azul
 
     // Aplicar el nuevo fondo
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.25) 0%, rgba(0,0,0,0.95) 70%)`;
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.1) 0%, rgba(0,0,0,0.95) 70%)`;
 
     // Pulso de la luz
     if (growing) {
