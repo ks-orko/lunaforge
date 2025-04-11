@@ -218,21 +218,7 @@
         newComment.textContent = commentText;
         document.getElementById('comments-list').appendChild(newComment);
         commentInput.value = '';
-    }
-  }
-
-const spotlight = document.getElementById('spotlight');
-
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let pulseSize = 600;
-let greenValue = 0; // Comienza rojo (verde = 0)
-let goingToYellow = true; // Dirección del cambio de color
-
-document.addEventListener('mousemove', function(e) {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-});
+    } 
 
 // Script de la antorcha viva sincronizada (cambio de color y tamaño juntos)
 const spotlight = document.getElementById('spotlight');
