@@ -216,28 +216,33 @@
     }
   }
 
-  // Script de la antorcha que respira de forma natural
+  // Script de la antorcha viva, respirando y cambiando de color
 const spotlight = document.getElementById('spotlight');
 
-let pulse = 0;           // Tamaño adicional dinámico
-let growing = true;      // Saber si estamos expandiendo o contrayendo
-let maxPulse = 20;       // Hasta cuánto se expande en este ciclo
+let pulse = 0;          // Tamaño adicional dinámico
+let growing = true;     // Expandiendo o encogiendo
+let maxPulse = 20;      // Hasta cuánto se expande
+let colorShift = 0;     // Para cambiar el color dinámicamente
 
 document.addEventListener('mousemove', function(e) {
-    const baseSize = 700;            // Tamaño base
+    const baseSize = 700;                // Tamaño base
     const pulseSize = baseSize + pulse;  // Tamaño pulsando
 
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${e.clientX}px ${e.clientY}px, rgba(200, 140, 80, 0.15) 0%, rgba(0, 0, 0, 0.95) 70%)`;
+    // Cambiamos dinámicamente entre colores cálidos
+    const red = 255;
+    const green = 140 + Math.floor(Math.sin(colorShift) * 40); // entre 100-180
+    const blue = 50 + Math.floor(Math.cos(colorShift) * 30);   // entre 20-80
+
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${e.clientX}px ${e.clientY}px, rgba(${red},${green},${blue},0.25) 0%, rgba(0,0,0,0.95) 70%)`;
 });
 
-// Ahora hacemos que la luz no solo pulse, sino que cambie aleatoriamente
+// Hacer respirar la luz y cambiar su color
 setInterval(function() {
     if (growing) {
         pulse += 1;
         if (pulse > maxPulse) {
             growing = false;
-            // Cambiamos aleatoriamente el siguiente "máximo"
-            maxPulse = Math.floor(Math.random() * 15) + 10; // nuevo máximo entre 10 y 25
+            maxPulse = Math.floor(Math.random() * 15) + 10; // nuevo máximo aleatorio
         }
     } else {
         pulse -= 1;
@@ -245,7 +250,11 @@ setInterval(function() {
             growing = true;
         }
     }
-}, 50); // La velocidad del latido (puedes ajustar)
+
+    // Cambiar gradualmente el color
+    colorShift += 0.1; // velocidad de cambio de color
+}, 50); // Velocidad de la respiración
+
 </script>
 
 </body>
