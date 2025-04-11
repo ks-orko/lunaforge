@@ -220,53 +220,48 @@
         commentInput.value = '';
     } 
 
-// Script de la antorcha viva sincronizada (cambio de color y tamaño juntos)
 const spotlight = document.getElementById('spotlight');
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 let pulseSize = 600;
-let greenValue = 0;
-let goingToYellow = true;
+let greenValue = 0; // Comienza rojo (verde = 0)
+let goingToYellow = true; // Dirección del cambio de color
 
 document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// Actualizar la luz constantemente (cada 30 ms para suavidad)
+// Actualizar la luz constantemente
 setInterval(function() {
     const red = 255;
     const blue = 0;
 
-    // Actualizar color suavemente
+    // Actualizar suavemente el valor de verde
     if (goingToYellow) {
-        greenValue += 5;
+        greenValue += 5; // Incrementa el verde
         if (greenValue >= 255) {
             greenValue = 255;
-            goingToYellow = false;
+            goingToYellow = false; // Cuando llega a amarillo, baja
         }
     } else {
-        greenValue -= 5;
+        greenValue -= 5; // Decrementa el verde
         if (greenValue <= 0) {
             greenValue = 0;
-            goingToYellow = true;
+            goingToYellow = true; // Cuando vuelve a rojo, sube otra vez
         }
     }
 
+    // Aplicar el fondo dinámico
     spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${greenValue},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
-}, 30); // Muy rápido, para que el cambio de color sea suave
+}, 30); // Actualizar cada 30ms (suave y fluido)
 
-// 👇 NUEVO: Cambiar el tamaño y reiniciar el color sincronizadamente
+// Cambiar el tamaño (respiración) 1 vez por segundo
 setInterval(function() {
-    // Cambiar tamaño al azar entre 500 y 900
-    pulseSize = Math.floor(Math.random() * 400) + 500;
-
-    // Forzar el cambio de dirección del color (empieza otra transición)
-    goingToYellow = !goingToYellow;
-
-}, 1500); // Cada 1500ms ➔ cambia talla Y dirección del color
+    pulseSize = Math.floor(Math.random() * 400) + 500; 
+}, 1000); // Cambia tamaño cada 1000ms
 
 </script>
 </body>
