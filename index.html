@@ -106,16 +106,18 @@
 
         /* Efecto antorcha */
         #spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw; /* Viewport Width */
-            height: 100vh; /* Viewport Height */
-            pointer-events: none;
-            z-index: 9999;
-            background: radial-gradient(circle 150px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.95) 50%);
-            transition: background 0.1s;
+        position: fixed; /* ¡Obligatorio! */
+        top: 0;
+        left: 0;
+        width: 100vw; /* Toma todo el ancho de la ventana */
+        height: 100vh; /* Toma todo el alto de la ventana */
+        pointer-events: none; /* Para no bloquear los clics */
+        z-index: 9999; /* Encima de todo */
+        background: radial-gradient(circle 150px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.95) 50%);
+        transition: background 0.1s;
+        overflow: hidden; /* Evitar que nada interno cree scroll */
         }
+
     </style>
 </head>
 
