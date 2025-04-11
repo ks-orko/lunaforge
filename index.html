@@ -1,125 +1,131 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luna Forge Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        /* Estilos generales */
-        body {
-            background-color: #0d0d1a;
-            background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
-            background-repeat: repeat;
-            background-size: contain;
-            color: #ffffff;
-            font-family: 'MedievalSharp', cursive;
-            font-size: 28px;
-            line-height: 1.8;
-            margin: 0;
-            padding: 0;
-            position: relative;
-            overflow-x: hidden;            
-            overflow-y: auto; /* Permite scroll solo si hay más contenido */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luna Forge Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      height: auto;
+    }
 
-            cursor: url('images/torch32.png') 16 16, auto;
-        }
-        header, footer {
-            padding: 60px 20px;
-            text-align: center;
-        }
-        section {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 20px;
-            text-align: justify;
-        }
-        h1 {
-            font-size: 42px;
-            text-align: center;
-        }
-        h2 {
-            font-size: 38px;
-            text-align: center;
-        }
-        h3 {
-            font-size: 34px;
-            text-align: center;
-        }
-        .games {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .games img, .merch img {
-            width: 250px;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .games img:hover, .merch img:hover {
-            transform: scale(1.02);
-        }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #4e5eff;
-            color: white;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 28px;
-            text-align: center;
-        }
-        .merch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        input, textarea {
-            padding: 15px;
-            width: 80%;
-            border-radius: 8px;
-            border: none;
-            font-family: 'MedievalSharp', cursive;
-            font-size: 26px;
-        }
-        #comments-list {
-            margin-top: 30px;
-        }
-        footer {
-            font-size: 20px;
-            background-color: #1a1a2e;
-            text-align: center;
-        }
-        /*efecto antorcha*/
-        #spotlight {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 9999;
-    background: radial-gradient(circle 150px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.95) 50%);
-    transition: background 0.1s;
-    overflow: hidden;
-    display: block; /* 🛠️ AGREGAR ESTO */
-}
+    body {
+      background-color: #0d0d1a;
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-repeat: repeat;
+      background-size: contain;
+      color: #ffffff;
+      font-family: 'MedievalSharp', cursive;
+      font-size: 28px;
+      line-height: 1.8;
+      position: relative;
+      cursor: url('images/torch32.png') 16 16, auto;
+    }
 
-    </style>
+    header, footer {
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+      text-align: justify;
+    }
+
+    h1 { font-size: 42px; text-align: center; }
+    h2 { font-size: 38px; text-align: center; }
+    h3 { font-size: 34px; text-align: center; }
+
+    .games {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .games img, .merch img {
+      width: 250px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .games img:hover, .merch img:hover {
+      transform: scale(1.02);
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4e5eff;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    .merch {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 15px;
+      width: 80%;
+      border-radius: 8px;
+      border: none;
+      font-family: 'MedievalSharp', cursive;
+      font-size: 26px;
+    }
+
+    #comments-list {
+      margin-top: 30px;
+    }
+
+    footer {
+      font-size: 20px;
+      background-color: #1a1a2e;
+      text-align: center;
+    }
+
+    /* 🔥 Efecto antorcha */
+    #spotlight {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      background: radial-gradient(circle 150px at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.95) 50%);
+      transition: background 0.1s;
+      overflow: hidden;
+      display: block;
+      visibility: hidden; /* 👈 nuevo: inicialmente invisible */
+    }
+  </style>
 </head>
 
 <body>
@@ -128,81 +134,68 @@
 <div id="spotlight"></div>
 
 <header data-aos="fade-down">
-    <img src="./images/0.png" alt="Luna Forge Studio Logo" style="width: 500px;">
+  <img src="./images/0.png" alt="Luna Forge Studio Logo" style="width: 500px;" />
 </header>
 
+<!-- Aquí empiezan tus secciones -->
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Notre histoire</h2>
-    <p>Luna Forge Studio est né à Berthier-sur-Pointe, un petit village où l’imagination ne dort jamais. Fondé par Sébastien Dupont, notre studio est le reflet d’une communauté passionnée, qui a grandi autour de nos jeux.</p>
-    <p>Nous croyons au pouvoir des petites communautés pour créer de grandes aventures. Notre mission est de partager nos histoires avec le monde entier, inspirées par le cœur de notre village.</p>
+  <h2>Notre histoire</h2>
+  <p>Luna Forge Studio est né à Berthier-sur-Pointe...</p>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Notre mission</h2>
-    <p>Depuis nos débuts modestes, nous rêvons en grand : faire rayonner Berthier-sur-Pointe à travers le monde, toucher de nouvelles communautés et continuer à créer des jeux qui rassemblent les gens.</p>
+  <h2>Notre mission</h2>
+  <p>Depuis nos débuts modestes...</p>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Découvrez nos jeux</h2>
-    <div class="games">
-        <a href="https://store.steampowered.com/app/813780/Age_of_Empires_II_Definitive_Edition/" target="_blank"><img src="./images/1.png" alt="Jeu 1"></a>
-        <a href="https://store.steampowered.com/app/933110/Age_of_Empires_III_Definitive_Edition/" target="_blank"><img src="./images/2.png" alt="Jeu 2"></a>
-        <a href="https://store.steampowered.com/app/1466860/Age_of_Empires_IV_Anniversary_Edition/" target="_blank"><img src="./images/3.png" alt="Jeu 3"></a>
-    </div>
+  <h2>Découvrez nos jeux</h2>
+  <div class="games">
+    <a href="#"><img src="./images/1.png" alt="Jeu 1" /></a>
+    <a href="#"><img src="./images/2.png" alt="Jeu 2" /></a>
+    <a href="#"><img src="./images/3.png" alt="Jeu 3" /></a>
+  </div>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Pourquoi soutenir Luna Forge Studio ?</h2>
-    <p>Soutenir Luna Forge Studio, c’est soutenir la passion, la créativité et les rêves indépendants.</p>
-    <p>Chaque jeu que nous créons est une lettre d’amour à notre communauté. Chaque achat nous aide à grandir et à continuer à raconter des histoires uniques.</p>
-    <p>Rejoignez l’aventure !</p>
+  <h2>Pourquoi soutenir Luna Forge Studio ?</h2>
+  <p>Soutenir Luna Forge Studio, c’est soutenir la passion...</p>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Emportez un morceau de Luna Forge avec vous</h2>
-    <div class="merch">
-        <img src="./images/4.png" alt="T-shirt Luna Forge">
-        <a href="https://www.amazon.ca/" target="_blank" class="button">Découvrir la boutique</a>
-    </div>
+  <h2>Emportez un morceau de Luna Forge avec vous</h2>
+  <div class="merch">
+    <img src="./images/4.png" alt="T-shirt Luna Forge" />
+    <a href="#" class="button">Découvrir la boutique</a>
+  </div>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Ce que dit notre communauté</h2>
-    <div id="comments-list">
-        <p>« Les jeux de Luna Forge Studio m’emportent dans un autre monde. Magnifique travail ! » — Camille</p>
-        <p>« On sent que chaque histoire a une âme. Bravo ! » — Thomas</p>
-        <p>« Fière de voir Berthier-sur-Pointe briller dans le monde du jeu vidéo. » — Anaïs</p>
-    </div>
-    <form onsubmit="addComment(event)">
-        <input type="text" id="newComment" placeholder="Ajoutez votre commentaire">
-        <button class="button" type="submit">Publier</button>
-    </form>
+  <h2>Ce que dit notre communauté</h2>
+  <div id="comments-list">
+    <p>« Les jeux de Luna Forge Studio m’emportent... » — Camille</p>
+  </div>
+  <form onsubmit="addComment(event)">
+    <input type="text" id="newComment" placeholder="Ajoutez votre commentaire" />
+    <button class="button" type="submit">Publier</button>
+  </form>
 </section>
 
 <section data-aos="fade-up" data-aos-duration="1500">
-    <h2>Rejoignez Luna Forge Studio</h2>
-    <h3>Nous recrutons !</h3>
-    <p>Vous rêvez de créer des mondes imaginaires ? Nous cherchons des talents passionnés pour agrandir notre équipe.</p>
-    <div class="jobs">
-        <p> 3 Postes disponibles : </p>
-        <ul>
-            <li>Artiste 2D/3D</li>
-            <li>Développeur Unity</li>
-            <li>Spécialiste marketing indépendant</li>
-        </ul>
-    </div>
-    <form>
-        <input type="text" placeholder="Nom">
-        <input type="email" placeholder="Adresse courriel">
-        <input type="text" placeholder="Poste visé">
-        <textarea placeholder="Message / Lien vers votre portfolio (optionnel)"></textarea>
-        <button class="button" type="submit">Envoyer ma candidature</button>
-    </form>
+  <h2>Rejoignez Luna Forge Studio</h2>
+  <h3>Nous recrutons !</h3>
+  <div class="jobs">
+    <ul>
+      <li>Artiste 2D/3D</li>
+      <li>Développeur Unity</li>
+      <li>Spécialiste marketing indépendant</li>
+    </ul>
+  </div>
 </section>
 
 <footer data-aos="fade-up" data-aos-duration="1500">
-    <p>© 2025 Luna Forge Studio. Tous droits réservés.</p>
-    <p>Suivez-nous : Instagram | Twitter | Discord</p>
+  <p>© 2025 Luna Forge Studio. Tous droits réservés.</p>
+  <p>Suivez-nous : Instagram | Twitter | Discord</p>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -214,61 +207,55 @@
     const commentInput = document.getElementById('newComment');
     const commentText = commentInput.value.trim();
     if (commentText !== '') {
-        const newComment = document.createElement('p');
-        newComment.textContent = commentText;
-        document.getElementById('comments-list').appendChild(newComment);
-        commentInput.value = '';
-    } 
- }
+      const newComment = document.createElement('p');
+      newComment.textContent = commentText;
+      document.getElementById('comments-list').appendChild(newComment);
+      commentInput.value = '';
+    }
+  }
 
-// Script de la antorcha viva sincronizada (cambio de color y tamaño juntos)
-const spotlight = document.getElementById('spotlight');
+  // 🔥 Script de la antorcha viva sincronizada
+  const spotlight = document.getElementById('spotlight');
 
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let pulseSize = 600;
-let greenValue = 0;
-let goingToYellow = true;
+  let mouseX = window.innerWidth / 2;
+  let mouseY = window.innerHeight / 2;
+  let pulseSize = 600;
+  let greenValue = 0;
+  let goingToYellow = true;
 
-document.addEventListener('mousemove', function(e) {
+  document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
-});
+  });
 
-// Actualizar la luz constantemente (cada 30 ms para suavidad)
-setInterval(function() {
+  setInterval(function() {
     const red = 255;
     const blue = 0;
 
-    // Actualizar color suavemente
     if (goingToYellow) {
-        greenValue += 5;
-        if (greenValue >= 255) {
-            greenValue = 255;
-            goingToYellow = false;
-        }
+      greenValue += 5;
+      if (greenValue >= 255) {
+        greenValue = 255;
+        goingToYellow = false;
+      }
     } else {
-        greenValue -= 5;
-        if (greenValue <= 0) {
-            greenValue = 0;
-            goingToYellow = true;
-        }
+      greenValue -= 5;
+      if (greenValue <= 0) {
+        greenValue = 0;
+        goingToYellow = true;
+      }
     }
 
+    spotlight.style.visibility = 'visible'; /* 👈 asegurar que se vea */
     spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${greenValue},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
-}, 30); // Muy rápido, para que el cambio de color sea suave
+  }, 30);
 
-// 👇 NUEVO: Cambiar el tamaño y reiniciar el color sincronizadamente
-setInterval(function() {
-    // Cambiar tamaño al azar entre 500 y 900
+  setInterval(function() {
     pulseSize = Math.floor(Math.random() * 400) + 500;
-
-    // Forzar el cambio de dirección del color (empieza otra transición)
     goingToYellow = !goingToYellow;
-
-}, 1500); // Cada 1500ms ➔ cambia talla Y dirección del color
-
+  }, 1500);
 </script>
+
 </body>
 </html>
