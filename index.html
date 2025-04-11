@@ -218,52 +218,52 @@
     }
   }
 
-// Script de la antorcha viva y colorida
+// Script de la antorcha viva (rojo-amarillo y respiración irregular)
 const spotlight = document.getElementById('spotlight');
 
-let mouseX = window.innerWidth / 2; // Coordenada X inicial (centro de pantalla)
-let mouseY = window.innerHeight / 2; // Coordenada Y inicial (centro de pantalla)
-let pulse = 0;
-let growing = true;
-let maxPulse = 400;
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let pulseSize = 600; // Empezamos con un tamaño inicial
 let colorShift = 0;
+let colorToggle = true; // Cambiar entre rojo y amarillo
 
-// Guardar la posición del mouse cuando se mueve
 document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// Función que actualiza la luz todo el tiempo (color + pulso)
+// Actualizar luz constantemente
 setInterval(function() {
-    const baseSize = 400;
-    const pulseSize = baseSize + pulse;
+    let red = 255;
+    let green;
+    let blue = 0;
 
-    // Cambiar dinámicamente el color
-    const red = 255;
-    const green = 140 + Math.floor(Math.sin(colorShift) * 40); // Oscilación verde
-    const blue = 50 + Math.floor(Math.cos(colorShift) * 30);    // Oscilación azul
-
-    // Aplicar el nuevo fondo
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
-
-    // Pulso de la luz
-    if (growing) {
-        pulse += 1;
-        if (pulse > maxPulse) {
-            growing = false;
-            maxPulse = Math.floor(Math.random() * 15) + 10; // nuevo máximo aleatorio
-        }
+    // Alternar entre rojo y amarillo
+    if (colorToggle) {
+        // Color rojo 🔴
+        green = 0;
     } else {
-        pulse -= 1;
-        if (pulse < 0) {
-            growing = true;
-        }
+        // Color amarillo 🟡
+        green = 255;
     }
 
-    // Cambio continuo de color
-    colorShift += 0.1;
-}, 35); // Actualiza cada 50 milisegundos
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
+
+    // Oscilar el color cada poco tiempo
+    colorShift += 0.05;
+}, 30); // Actualización súper fluida
+  
+
+// Cambiar el color rojo/amarillo cada 0.5 segundos
+setInterval(function() {
+    colorToggle = !colorToggle;
+}, 500); // Cambia el color cada 500ms
+
+// Cambiar el tamaño (respiración) 3 veces por segundo
+setInterval(function() {
+    pulseSize = Math.floor(Math.random() * 400) + 500; 
+    // Esto da un número entre 500 y 900
+}, 333); // 3 veces por segundo (1000ms / 3 ≈ 333ms)
 
 </script>
 </body>
