@@ -225,7 +225,7 @@ let mouseX = window.innerWidth / 2; // Coordenada X inicial (centro de pantalla)
 let mouseY = window.innerHeight / 2; // Coordenada Y inicial (centro de pantalla)
 let pulse = 0;
 let growing = true;
-let maxPulse = 200;
+let maxPulse = 300;
 let colorShift = 0;
 
 // Guardar la posición del mouse cuando se mueve
@@ -236,7 +236,7 @@ document.addEventListener('mousemove', function(e) {
 
 // Función que actualiza la luz todo el tiempo (color + pulso)
 setInterval(function() {
-    const baseSize = 600;
+    const baseSize = 500;
     const pulseSize = baseSize + pulse;
 
     // Cambiar dinámicamente el color
