@@ -221,48 +221,53 @@
     } 
  }
 
+// Script de la antorcha viva sincronizada (cambio de color y tamaño juntos)
 const spotlight = document.getElementById('spotlight');
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 let pulseSize = 600;
-let greenValue = 0; // Comienza rojo (verde = 0)
-let goingToYellow = true; // Dirección del cambio de color
+let greenValue = 0;
+let goingToYellow = true;
 
 document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// Actualizar la luz constantemente
+// Actualizar la luz constantemente (cada 30 ms para suavidad)
 setInterval(function() {
     const red = 255;
     const blue = 0;
 
-    // Actualizar suavemente el valor de verde
+    // Actualizar color suavemente
     if (goingToYellow) {
-        greenValue += 5; // Incrementa el verde
+        greenValue += 5;
         if (greenValue >= 255) {
             greenValue = 255;
-            goingToYellow = false; // Cuando llega a amarillo, baja
+            goingToYellow = false;
         }
     } else {
-        greenValue -= 5; // Decrementa el verde
+        greenValue -= 5;
         if (greenValue <= 0) {
             greenValue = 0;
-            goingToYellow = true; // Cuando vuelve a rojo, sube otra vez
+            goingToYellow = true;
         }
     }
 
-    // Aplicar el fondo dinámico
     spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${greenValue},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
-}, 30); // Actualizar cada 30ms (suave y fluido)
+}, 30); // Muy rápido, para que el cambio de color sea suave
 
-// Cambiar el tamaño (respiración) 1 vez por segundo
+// 👇 NUEVO: Cambiar el tamaño y reiniciar el color sincronizadamente
 setInterval(function() {
-    pulseSize = Math.floor(Math.random() * 400) + 500; 
-}, 1000); // Cambia tamaño cada 1000ms
+    // Cambiar tamaño al azar entre 500 y 900
+    pulseSize = Math.floor(Math.random() * 400) + 500;
+
+    // Forzar el cambio de dirección del color (empieza otra transición)
+    goingToYellow = !goingToYellow;
+
+}, 1500); // Cada 1500ms ➔ cambia talla Y dirección del color
 
 </script>
 </body>
