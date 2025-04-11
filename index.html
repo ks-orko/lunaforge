@@ -245,7 +245,7 @@ setInterval(function() {
     const blue = 50 + Math.floor(Math.cos(colorShift) * 30);    // Oscilación azul
 
     // Aplicar el nuevo fondo
-    spotlight.style.background = radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%);
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
     // Pulso de la luz
     if (growing) {
