@@ -218,52 +218,48 @@
     }
   }
 
-// Script de la antorcha viva (rojo-amarillo y respiración irregular)
 const spotlight = document.getElementById('spotlight');
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
-let pulseSize = 600; // Empezamos con un tamaño inicial
-let colorShift = 0;
-let colorToggle = true; // Cambiar entre rojo y amarillo
+let pulseSize = 600;
+let greenValue = 0; // Comienza rojo (verde = 0)
+let goingToYellow = true; // Dirección del cambio de color
 
 document.addEventListener('mousemove', function(e) {
     mouseX = e.clientX;
     mouseY = e.clientY;
 });
 
-// Actualizar luz constantemente
+// Actualizar la luz constantemente
 setInterval(function() {
-    let red = 255;
-    let green;
-    let blue = 0;
+    const red = 255;
+    const blue = 0;
 
-    // Alternar entre rojo y amarillo
-    if (colorToggle) {
-        // Color rojo 🔴
-        green = 0;
+    // Actualizar suavemente el valor de verde
+    if (goingToYellow) {
+        greenValue += 5; // Incrementa el verde
+        if (greenValue >= 255) {
+            greenValue = 255;
+            goingToYellow = false; // Cuando llega a amarillo, baja
+        }
     } else {
-        // Color amarillo 🟡
-        green = 255;
+        greenValue -= 5; // Decrementa el verde
+        if (greenValue <= 0) {
+            greenValue = 0;
+            goingToYellow = true; // Cuando vuelve a rojo, sube otra vez
+        }
     }
 
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
+    // Aplicar el fondo dinámico
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${greenValue},${blue},0.2) 0%, rgba(0,0,0,0.95) 70%)`;
 
-    // Oscilar el color cada poco tiempo
-    colorShift += 0.05;
-}, 30); // Actualización súper fluida
-  
+}, 30); // Actualizar cada 30ms (suave y fluido)
 
-// Cambiar el color rojo/amarillo cada 0.5 segundos
-setInterval(function() {
-    colorToggle = !colorToggle;
-}, 500); // Cambia el color cada 500ms
-
-// Cambiar el tamaño (respiración) 3 veces por segundo
+// Cambiar el tamaño (respiración) 1 vez por segundo
 setInterval(function() {
     pulseSize = Math.floor(Math.random() * 400) + 500; 
-    // Esto da un número entre 500 y 900
-}, 1000); // 3 veces por segundo (1000ms / 3 ≈ 333ms)
+}, 1500); // Cambia tamaño cada 1000ms
 
 
 </script>
