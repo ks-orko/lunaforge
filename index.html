@@ -218,28 +218,36 @@
     }
   }
 
-  // Script de la antorcha viva, respirando y cambiando de color
+// Script de la antorcha viva y colorida
 const spotlight = document.getElementById('spotlight');
 
-let pulse = 0;          // Tamaño adicional dinámico
-let growing = true;     // Expandiendo o encogiendo
-let maxPulse = 20;      // Hasta cuánto se expande
-let colorShift = 0;     // Para cambiar el color dinámicamente
+let mouseX = window.innerWidth / 2; // Coordenada X inicial (centro de pantalla)
+let mouseY = window.innerHeight / 2; // Coordenada Y inicial (centro de pantalla)
+let pulse = 0;
+let growing = true;
+let maxPulse = 20;
+let colorShift = 0;
 
+// Guardar la posición del mouse cuando se mueve
 document.addEventListener('mousemove', function(e) {
-    const baseSize = 700;                // Tamaño base
-    const pulseSize = baseSize + pulse;  // Tamaño pulsando
-
-    // Cambiamos dinámicamente entre colores cálidos
-    const red = 255;
-    const green = 140 + Math.floor(Math.sin(colorShift) * 40); // entre 100-180
-    const blue = 50 + Math.floor(Math.cos(colorShift) * 30);   // entre 20-80
-
-    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${e.clientX}px ${e.clientY}px, rgba(${red},${green},${blue},0.25) 0%, rgba(0,0,0,0.95) 70%)`;
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
 
-// Hacer respirar la luz y cambiar su color
+// Función que actualiza la luz todo el tiempo (color + pulso)
 setInterval(function() {
+    const baseSize = 700;
+    const pulseSize = baseSize + pulse;
+
+    // Cambiar dinámicamente el color
+    const red = 255;
+    const green = 140 + Math.floor(Math.sin(colorShift) * 40); // Oscilación verde
+    const blue = 50 + Math.floor(Math.cos(colorShift) * 30);    // Oscilación azul
+
+    // Aplicar el nuevo fondo
+    spotlight.style.background = `radial-gradient(circle ${pulseSize}px at ${mouseX}px ${mouseY}px, rgba(${red},${green},${blue},0.25) 0%, rgba(0,0,0,0.95) 70%)`;
+
+    // Pulso de la luz
     if (growing) {
         pulse += 1;
         if (pulse > maxPulse) {
@@ -253,9 +261,10 @@ setInterval(function() {
         }
     }
 
-    // Cambiar gradualmente el color
-    colorShift += 0.1; // velocidad de cambio de color
-}, 50); // Velocidad de la respiración
+    // Cambio continuo de color
+    colorShift += 0.1;
+}, 50); // Actualiza cada 50 milisegundos
+
 
 </script>
 
